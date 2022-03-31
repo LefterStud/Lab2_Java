@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -12,7 +13,14 @@ public class Main {
      */
     private static void task40() {
         System.out.println("Task 40");
-
+        int[] numberRow = {1, 3, 6, 8, 1, 0, 4, 2, 7};
+        for (int pos = 0; pos < numberRow.length; pos++) {
+            if (numberRow[pos] != 0) {
+                System.out.print(numberRow[pos] + " ");
+            } else {
+                break;
+            }
+        }
     }
 
     /**
@@ -20,7 +28,24 @@ public class Main {
      */
     private static void task65() {
         System.out.println("\n\nTask 65");
-
+        float[] numberRow = new float[14];
+        for (int pos = 0; pos < numberRow.length; pos++) {
+            numberRow[pos] = (float) Math.random() * 9;
+            System.out.print(numberRow[pos] + " ");
+        }
+        float max = numberRow[0];
+        float min = numberRow[0];
+        float sum;
+        for (int pos = 0; pos < numberRow.length; pos++) {
+            if (numberRow[pos] < min) {
+                min = numberRow[pos];
+            }
+            if (numberRow[pos] > max) {
+                max = numberRow[pos];
+            }
+        }
+        sum=min+max;
+        System.out.print("\nSum of min and max = "+sum);
     }
 
     /**
@@ -48,17 +73,17 @@ public class Main {
         int number2 = scan.nextInt();
         if ((number1 >= 0) && (number2 >= 0) && (number1 <= numberRow.length) && (number2 <= numberRow.length)) {
             for (int pos = 0; pos < numberRow.length; pos++) {
-                numberRow[pos] = (double) Math.random() * 15 - 5;
+                numberRow[pos] = (float) Math.random() * 15 - 5;
                 System.out.print(String.format("%.3f ", numberRow[pos]));
             }
             numberRow[i] = Math.sqrt(Math.pow(numberRow[number1 - 1], 2) + Math.pow(numberRow[number2 - 1], 2));
             System.out.print("\n");
             for (int pos = 0; pos < numberRow.length; pos++) {
                 if (pos == i) {
-                    System.out.print(ANSI_RED + String.format("%.3f ", numberRow[pos])+ANSI_RESET);
-                }else if ((pos==number1-1)||(pos==number2-1)){
-                    System.out.print(ANSI_GREEN + String.format("%.3f ", numberRow[pos])+ANSI_RESET);
-                } else{
+                    System.out.print(ANSI_RED + String.format("%.3f ", numberRow[pos]) + ANSI_RESET);
+                } else if ((pos == number1 - 1) || (pos == number2 - 1)) {
+                    System.out.print(ANSI_GREEN + String.format("%.3f ", numberRow[pos]) + ANSI_RESET);
+                } else {
                     System.out.print(String.format("%.3f ", numberRow[pos]));
                 }
             }
@@ -74,14 +99,17 @@ public class Main {
      */
     private static void task140() {
         System.out.println("\n\nTask 140");
+        String ANSI_GREEN = "\u001B[32m";
+        String ANSI_RESET = "\u001B[0m";
+        double[] aRow = new double[9];
 
     }
 
     public static void main(String[] args) {
-        task40();
+//        task40();
         task65();
         task90();
-        task115();
+//        task115();
         task140();
     }
 }
