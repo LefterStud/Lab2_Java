@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -30,7 +29,7 @@ public class Main {
         System.out.println("\n\nTask 65");
         float[] numberRow = new float[14];
         for (int pos = 0; pos < numberRow.length; pos++) {
-            numberRow[pos] = (float) Math.random() * 9;
+            numberRow[pos] = (float) Math.random() * 100;
             System.out.print(numberRow[pos] + " ");
         }
         float max = numberRow[0];
@@ -44,8 +43,8 @@ public class Main {
                 max = numberRow[pos];
             }
         }
-        sum=min+max;
-        System.out.print("\nSum of min and max = "+sum);
+        sum = min + max;
+        System.out.print("\nSum of min and max = " + sum);
     }
 
     /**
@@ -54,7 +53,22 @@ public class Main {
      */
     private static void task90() {
         System.out.println("\n\nTask 90");
-
+        int[] numberRow = new int[9];
+        int counter = 0;
+        for (int pos = 0; pos < numberRow.length; pos++) {
+            numberRow[pos] = -1;
+            System.out.print(numberRow[pos] + " ");
+        }
+        for (int pos = 1; pos < numberRow.length; pos++) {
+            if (numberRow[pos] == numberRow[pos - 1]) {
+                counter++;
+            }
+        }
+        if (counter == numberRow.length - 1) {
+            System.out.print("\nВсе элементы последовательности равны между собой.");
+        } else {
+            System.out.print("\nНе все элементы последовательности равны между собой.");
+        }
     }
 
     /**
@@ -74,17 +88,17 @@ public class Main {
         if ((number1 >= 0) && (number2 >= 0) && (number1 <= numberRow.length) && (number2 <= numberRow.length)) {
             for (int pos = 0; pos < numberRow.length; pos++) {
                 numberRow[pos] = (float) Math.random() * 15 - 5;
-                System.out.print(String.format("%.3f ", numberRow[pos]));
+                System.out.printf("%.3f ", numberRow[pos]);
             }
             numberRow[i] = Math.sqrt(Math.pow(numberRow[number1 - 1], 2) + Math.pow(numberRow[number2 - 1], 2));
-            System.out.print("\n");
+            System.out.print("");
             for (int pos = 0; pos < numberRow.length; pos++) {
                 if (pos == i) {
                     System.out.print(ANSI_RED + String.format("%.3f ", numberRow[pos]) + ANSI_RESET);
                 } else if ((pos == number1 - 1) || (pos == number2 - 1)) {
                     System.out.print(ANSI_GREEN + String.format("%.3f ", numberRow[pos]) + ANSI_RESET);
                 } else {
-                    System.out.print(String.format("%.3f ", numberRow[pos]));
+                    System.out.printf("%.3f ", numberRow[pos]);
                 }
             }
         } else {
@@ -101,15 +115,38 @@ public class Main {
         System.out.println("\n\nTask 140");
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_RESET = "\u001B[0m";
-        double[] aRow = new double[9];
-
+        double average;
+        float sum = 0;
+        float[] aRow = new float[15];
+        for (int pos = 0; pos < aRow.length; pos++) {
+            aRow[pos] = (int) (Math.random() * 101);
+            sum += aRow[pos];
+            System.out.print(aRow[pos] + " ");
+        }
+        System.out.println();
+        int indexMin = 0;
+        for (int pos = 0; pos < aRow.length; pos++) {
+            if (aRow[pos] <= aRow[indexMin]) {
+                indexMin = pos;
+            }
+        }
+        average = sum / aRow.length;
+        System.out.println("Average = " + average);
+        aRow[indexMin] = (int) average;
+        for (int pos = 0; pos < aRow.length; pos++) {
+            if (pos == indexMin) {
+                System.out.print(ANSI_GREEN + aRow[pos] + " " + ANSI_RESET);
+            } else {
+                System.out.print(aRow[pos] + " ");
+            }
+        }
     }
 
     public static void main(String[] args) {
-//        task40();
+        task40();
         task65();
         task90();
-//        task115();
+        task115();
         task140();
     }
 }
