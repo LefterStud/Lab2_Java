@@ -27,7 +27,8 @@ public class Main {
      */
     private static void task65() {
         System.out.println("\n\nTask 65");
-        float[] numberRow = new float[14];
+        final int N = 14;
+        float[] numberRow = new float[N];
         for (int pos = 0; pos < numberRow.length; pos++) {
             numberRow[pos] = (float) Math.random() * 100;
             System.out.print(numberRow[pos] + " ");
@@ -38,10 +39,12 @@ public class Main {
         for (int pos = 0; pos < numberRow.length; pos++) {
             if (numberRow[pos] < min) {
                 min = numberRow[pos];
+            } else {
+                if (numberRow[pos] > max) {
+                    max = numberRow[pos];
+                }
             }
-            if (numberRow[pos] > max) {
-                max = numberRow[pos];
-            }
+
         }
         sum = min + max;
         System.out.print("\nSum of min and max = " + sum);
@@ -53,22 +56,20 @@ public class Main {
      */
     private static void task90() {
         System.out.println("\n\nTask 90");
-        int[] numberRow = new int[9];
+        final int N = 9;
+        int[] numberRow = new int[N];
         int counter = 0;
         for (int pos = 0; pos < numberRow.length; pos++) {
             numberRow[pos] = -1;
             System.out.print(numberRow[pos] + " ");
         }
         for (int pos = 1; pos < numberRow.length; pos++) {
-            if (numberRow[pos] == numberRow[pos - 1]) {
-                counter++;
+            if (numberRow[pos] != numberRow[pos - 1]) {
+                System.out.print("\nНе все элементы последовательности равны между собой.");
+                return;
             }
         }
-        if (counter == numberRow.length - 1) {
-            System.out.print("\nВсе элементы последовательности равны между собой.");
-        } else {
-            System.out.print("\nНе все элементы последовательности равны между собой.");
-        }
+        System.out.print("\nВсе элементы последовательности равны между собой.");
     }
 
     /**
@@ -80,8 +81,9 @@ public class Main {
         String ANSI_RED = "\u001B[31m";
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_RESET = "\u001B[0m";
+        final int N = 9;
         int i = 3;
-        double[] numberRow = new double[9];
+        double[] numberRow = new double[N];
         Scanner scan = new Scanner(System.in);
         int number1 = scan.nextInt();
         int number2 = scan.nextInt();
@@ -91,7 +93,7 @@ public class Main {
                 System.out.printf("%.3f ", numberRow[pos]);
             }
             numberRow[i] = Math.sqrt(Math.pow(numberRow[number1 - 1], 2) + Math.pow(numberRow[number2 - 1], 2));
-            System.out.print("");
+            System.out.println("");
             for (int pos = 0; pos < numberRow.length; pos++) {
                 if (pos == i) {
                     System.out.print(ANSI_RED + String.format("%.3f ", numberRow[pos]) + ANSI_RESET);
@@ -115,9 +117,10 @@ public class Main {
         System.out.println("\n\nTask 140");
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_RESET = "\u001B[0m";
+        final int N = 15;
         double average;
         float sum = 0;
-        float[] aRow = new float[15];
+        float[] aRow = new float[N];
         for (int pos = 0; pos < aRow.length; pos++) {
             aRow[pos] = (int) (Math.random() * 101);
             sum += aRow[pos];
